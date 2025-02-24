@@ -18,17 +18,23 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class AdminPanelProvider extends PanelProvider
+class AppPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
             ->default()
-            ->id('admin')
-            ->path('admin')
+            ->id('app')
+            ->path('/')
             ->login()
+            ->passwordReset()
+            ->emailVerification()
+            ->brandLogo('https://handsonlesco.com/wp-content/uploads/2020/10/footer-logo.png')
+            ->brandLogoHeight('50px')
+            ->favicon('https://handsonlesco.com/wp-content/uploads/2021/04/cropped-favicon-32x32.png')
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Blue,
+                'red' => Color::Red,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
